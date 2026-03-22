@@ -3,63 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacker Terminal - Vanta</title>
+    <title>Hacker Portfolio | System</title>
     <style>
-        /* Garante que o fundo ocupe a tela inteira e o conteúdo fique por cima */
-        #vanta-canvas {
-            position: fixed;
+        /* Reset básico */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Evita barras de rolagem */
+            background-color: #153c32; /* Cor de fundo de segurança */
+        }
+
+        #vanta-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -1; /* Joga para trás de tudo */
+            z-index: 0;
         }
 
-        body {
-            margin: 0;
-            color: #00FF41;
-            font-family: 'Courier New', monospace;
-        }
-
-        .content {
+        .overlay-content {
             position: relative;
-            z-index: 1; /* Garante que o texto fique na frente */
+            z-index: 1;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            color: #3fffa4;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 10px rgba(63, 255, 164, 0.5);
             text-align: center;
-            pointer-events: none; /* Permite que o mouse interaja com o fundo através do texto */
+            pointer-events: none; /* Deixa o mouse interagir com o Vanta por trás */
+        }
+
+        .glitch-text {
+            font-size: 3rem;
+            letter-spacing: 5px;
+            border-right: 3px solid #3fffa4;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3.5s steps(30, end), blink .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: #3fffa4 }
         }
     </style>
 </head>
 <body>
 
-    <div id="vanta-canvas"></div>
+    <div id="vanta-bg"></div>
 
-    <div class="content">
-        <h1 style="background: rgba(0,0,0,0.7); padding: 20px;">SYSTEM OVERRIDE IN PROGRESS...</h1>
+    <div class="overlay-content">
+        <h1 class="glitch-text">INITIALIZING BYPASS...</h1>
+        <p>[ LOGIN: ROOT_USER ]</p>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 
     <script>
         VANTA.NET({
-            el: "#vanta-canvas", // Seleciona a ID da nossa div
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0x00ff41,       // Cor das linhas (Verde Hacker)
-            backgroundColor: 0x0,  // Fundo (Preto)
-            points: 12.00,         // Quantidade de pontos
-            maxDistance: 20.00,    // Distância de conexão
-            spacing: 16.00         // Espaçamento
+          el: "#vanta-bg", // Alterado para bater com o ID da nossa div
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          scale: 1.00,
+          scaleMobile: 1.00,
+          color: 0x3fffa4,       // Sua cor personalizada
+          backgroundColor: 0x153c32, // Sua cor personalizada
+          points: 15.00,         // Aumentei levemente os pontos para preencher mais
+          maxDistance: 22.00,
+          spacing: 15.00
         })
     </script>
 </body>
